@@ -1,6 +1,6 @@
 package responseController
 
-import "Smoozzy/TicketSystemController/internal/model"
+import "TController/internal/model"
 
 type Response interface {
 	InitReceiversPull(n int)

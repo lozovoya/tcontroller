@@ -1,8 +1,8 @@
 package v1
 
 import (
-	"Smoozzy/TicketSystemController/internal/cache"
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/cache"
+	"TController/internal/model"
 	"encoding/json"
 	"net/http"
 

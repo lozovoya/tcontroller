@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"Smoozzy/TicketSystemController/internal/cache"
-	"Smoozzy/TicketSystemController/internal/model"
-	"Smoozzy/TicketSystemController/internal/ticketer"
+	"TController/internal/cache"
+	"TController/internal/model"
+	"TController/internal/ticketer"
 	"encoding/json"
 	"errors"
 	"fmt"

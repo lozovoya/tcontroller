@@ -1,7 +1,7 @@
 package messageBroker
 
 import (
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/model"
 	"context"
 	"encoding/binary"
 	"encoding/json"

@@ -1,8 +1,8 @@
 package ticketer
 
 import (
-	"Smoozzy/TicketSystemController/internal/messageBroker"
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/messageBroker"
+	"TController/internal/model"
 	"context"
 	"fmt"
 	"regexp"

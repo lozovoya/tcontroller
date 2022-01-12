@@ -1,9 +1,9 @@
 package responseController
 
 import (
-	"Smoozzy/TicketSystemController/internal/cache"
-	"Smoozzy/TicketSystemController/internal/model"
-	"Smoozzy/TicketSystemController/internal/ticketer"
+	"TController/internal/cache"
+	"TController/internal/model"
+	"TController/internal/ticketer"
 	"bytes"
 	"context"
 	"encoding/json"

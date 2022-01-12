@@ -1,16 +1,16 @@
 package main
 
 import (
-	"Smoozzy/TicketSystemController/internal/api/httpserver"
-	v1 "Smoozzy/TicketSystemController/internal/api/httpserver/v1"
-	timer2 "Smoozzy/TicketSystemController/internal/timer"
+	"TController/internal/api/httpserver"
+	v1 "TController/internal/api/httpserver/v1"
+	timer2 "TController/internal/timer"
 	"time"
 
-	"Smoozzy/TicketSystemController/internal/cache"
-	"Smoozzy/TicketSystemController/internal/messageBroker"
-	"Smoozzy/TicketSystemController/internal/model"
-	"Smoozzy/TicketSystemController/internal/responseController"
-	"Smoozzy/TicketSystemController/internal/ticketer"
+	"TController/internal/cache"
+	"TController/internal/messageBroker"
+	"TController/internal/model"
+	"TController/internal/responseController"
+	"TController/internal/ticketer"
 	"context"
 	"log"
 	"net"
@@ -34,20 +34,20 @@ type Params = struct {
 	InTopic  string `env:"IN_TOPIC" envDefault:"b2b-TT_IN"`
 	//InTopic         string `env:"IN_TOPIC" envDefault:"b2b-TT_OUT" //для тестирования ответо`
 	RegistryURL     string `env:"REGISTRY_URL" envDefault:"http://10.101.15.110:8081/schemas/ids/"`
-	BrokerUser      string `env:"BROKER_USER" envDefault:"service_kafkasmz_uk"`
-	BrokerPass      string `env:"BROKER_PASS" envDefault:"nb$ap#K7dx"`
+	BrokerUser      string `env:"BROKER_USER" envDefault:""`
+	BrokerPass      string `env:"BROKER_PASS" envDefault:""`
 	InSchemeID      int    `env:"IN_SCHEME" envDefault:"92"`
 	OutSchemeID     int    `env:"OUT_SCHEME" envDefault:"71"`
 	BrokerGroupID   string `env:"BROKER_GROUP" envDefault:"TicketSystemController"`
 	ConsumerStreams int    `env:"CONSUMER_STREAMS" envDefault:"5"`
 
 	//Redis
-	CacheDSN string `env:"CACHE_DSN" envDefault:"redis://HQFQBb6fDcUK@dev-redis-master/0"`
+	CacheDSN string `env:"CACHE_DSN" envDefault:"redis://@dev-redis-master/0"`
 	CacheTTL int64  `env:"CACHE_TTL" envDefault:"259200"` //3 дня
 
 	//SberAPI
 	SberAPIID  string `env:"SBER_API_URI" envDefault:"sberapi"`
-	SberAPIURI string `env:"SBER_API_URI" envDefault:"http://smoozzy-sberapi-service:14800"`
+	SberAPIURI string `env:"SBER_API_URI" envDefault:""`
 }
 
 func main() {

@@ -1,8 +1,8 @@
 package timer
 
 import (
-	"Smoozzy/TicketSystemController/internal/cache"
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/cache"
+	"TController/internal/model"
 	"context"
 	"fmt"
 	"log"

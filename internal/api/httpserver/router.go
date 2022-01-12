@@ -1,7 +1,7 @@
 package httpserver
 
 import (
-	v1 "Smoozzy/TicketSystemController/internal/api/httpserver/v1"
+	v1 "TController/internal/api/httpserver/v1"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"

@@ -1,7 +1,7 @@
 package messageBroker
 
 import (
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/model"
 	"context"
 
 	"go.uber.org/zap"

@@ -1,7 +1,7 @@
 package ticketer
 
 import (
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/model"
 	"context"
 )
 

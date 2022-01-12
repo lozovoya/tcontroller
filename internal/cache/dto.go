@@ -1,7 +1,7 @@
 package cache
 
 import (
-	"Smoozzy/TicketSystemController/internal/model"
+	"TController/internal/model"
 )
 
 type CacheRecord struct {
