@@ -1,0 +1,63 @@
+variables:
+  REGISTRY: "${CI_REGISTRY}/smoozzy/smoozzyticketsystemcontroller"
+  DEV_IMAGENAME: "dev-smoozzy-ticketsystemcontroller"
+  IMAGENAME: "smoozzy-ticketsystemcontroller"
+  VERSION: "v${CI_PIPELINE_IID}"
+  DEV_NAMESPACE: smoozzy-dev
+  NAMESPACE: smoozzy
+
+stages:
+    - build
+    - deploy
+
+# Сборка prod-образа
+build_prod-smoozzy-ticketsystemcontroller:
+  image: docker:stable
+  services:
+    - docker:dind
+  stage: build
+  before_script:
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+  script:
+    - cd ${CI_PROJECT_DIR}
+    - docker build -t "${REGISTRY}/${IMAGENAME}:${VERSION}" -t "${REGISTRY}/${IMAGENAME}:latest" .
+    - docker push "${REGISTRY}/${IMAGENAME}:${VERSION}"
+    - docker push "${REGISTRY}/${IMAGENAME}:latest"
+  only:
+    refs:
+      - main
+    changes:
+      - Dockerfile
+      - cmd/**/*
+      - internal/**/*
+      - "*.go"
+      - "*.mod"
+      - "*.sum"
+
+# Публикация prod-образа
+deploy_prod-smoozzy-ticketsystemcontroller:
+  image: 
+    name: lachlanevenson/k8s-kubectl:latest
+    entrypoint: [""]
+  stage: deploy
+  environment:
+    name: prod_publication
+    url: https://smoozzy.monitoring.domru.ru
+  needs:
+    - build_prod-smoozzy-ticketsystemcontroller
+  script:
+    - echo "Publish ${REGISTRY}/${IMAGENAME}:${VERSION}"
+    - kubectl set image deployments/smoozzy-ticketsystemcontroller smoozzy-ticketsystemcontroller="${REGISTRY}/${IMAGENAME}:${VERSION}" --namespace=${NAMESPACE}
+    - kubectl rollout status deploy/smoozzy-ticketsystemcontroller --namespace=${NAMESPACE}
+  only:
+    kubernetes: active
+    refs:
+      - main
+    changes:
+      - Dockerfile
+      - cmd/**/*
+      - internal/**/*
+      - "*.go"
+      - "*.mod"
+      - "*.sum"
+  allow_failure: false
